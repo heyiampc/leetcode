@@ -5,11 +5,7 @@ public:
         if(nums.size()<=1) return nums.size();
         for(int i=1;i<nums.size();i++)
         {
-            if(nums[x]!=nums[i])
-            {
-                x++;
-                nums[x]=nums[i];
-            }
+            if(nums[x]!=nums[i]) nums[++x]=nums[i];
         }
         return x+1;
     }
