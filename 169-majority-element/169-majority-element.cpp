@@ -11,7 +11,19 @@ public:
     //     return -1;
     // }
     //2nd Approach
-    sort(nums.begin(),nums.end());
-    return nums[nums.size()/2];
+    // sort(nums.begin(),nums.end());
+    // return nums[nums.size()/2];
+         //3rd Approach
+         int c=0,v=0;
+         for(auto a:nums)
+         {
+             if(v==0)
+             {
+                 c=a;
+             }
+             if(c==a) v++;
+             else v--;
+         }
+         return c;
      }
 };
