@@ -11,11 +11,7 @@ public:
         {
             int l=min(height[x],height[y]);
             int b=y-x;
-            int c_area=l*b;
-            if(c_area>area) 
-            {
-                area=c_area;
-            }
+            area=max(l*b,area);
             if(l==height[x]) x++; else y--;
         }
         return area;
