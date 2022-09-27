@@ -1,6 +1,7 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
+        //Using Greedy Approach
         int jump=0;
         int pos=0;
         int max_reach=0;
