@@ -7,10 +7,11 @@ public:
         unordered_map<int,int> map;
         for(int i=0;i<n;i++)
             map[nums[i]]++;
-        if(k==0)
+        if(k==0) // If k=0 we have to check the frequency of count otherwise x-x=0
+                 //will count itself
         {
             for(auto x:map)
-                if(x.second>1) count++;
+                if(x.second>1) count++; //if freq > 1 means x exists more than once and                                         //we can count it a pait
             return count;
         }
         else
