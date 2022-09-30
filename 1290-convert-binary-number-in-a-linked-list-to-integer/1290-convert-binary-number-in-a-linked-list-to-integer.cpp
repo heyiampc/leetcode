@@ -23,7 +23,7 @@ public:
         
         //Iterative Approach
         ListNode* temp=head;
-        while(temp)
+        while(temp!=NULL)
         {
             ans*=2;
             ans+=temp->val;
