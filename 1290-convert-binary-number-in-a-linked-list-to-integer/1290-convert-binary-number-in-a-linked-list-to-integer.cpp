@@ -13,11 +13,22 @@ public:
     int ans=0;
     int i=0;
     int getDecimalValue(ListNode* head) {
-        if(head==NULL) return 0;
-        ans=getDecimalValue(head->next);
-        int p=pow(2,i++);
-        if(head->val)
-        ans+=p;
+        //Recursive Approach
+        // if(head==NULL) return 0; // base case
+        // ans=getDecimalValue(head->next); // recursion call
+        // int p=pow(2,i++);
+        // if(head->val)
+        // ans+=p;
+        // return ans;
+        
+        //Iterative Approach
+        ListNode* temp=head;
+        while(temp)
+        {
+            ans*=2;
+            ans+=temp->val;
+            temp=temp->next;
+        }
         return ans;
     }
 };
