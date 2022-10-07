@@ -8,7 +8,7 @@ public:
             return;
         }
         if(arr[i]<=target)
-        {
+        {  //We can reuse an element thats why we are not incrementing index
         ds.push_back(arr[i]);
         helperfun(i,arr,ds,ans,target-arr[i]);
         ds.pop_back();
