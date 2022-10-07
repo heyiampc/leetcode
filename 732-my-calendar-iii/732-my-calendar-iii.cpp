@@ -12,9 +12,10 @@ public:
         int max_sum=0;
         for(auto x:mp)
         {
-            sum=max(sum,max_sum+=x.second);
+            sum+=x.second;
+            max_sum=max(sum,max_sum);
         }
-        return sum;
+        return max_sum;
     }
 };
 
