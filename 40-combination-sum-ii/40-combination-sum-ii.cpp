@@ -9,7 +9,7 @@ public:
             }
          for(int i=idx;i<arr.size();i++)
          {
-            if(i>idx && arr[i]==arr[i-1]) continue;
+            if(i>idx && arr[i]==arr[i-1]) continue; //** IMP i>idx
             if(arr[i]>target) break;
             ds.push_back(arr[i]);
             helperfun(i+1,arr,ds,ans,target-arr[i]);
