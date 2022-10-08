@@ -8,7 +8,6 @@ public:
         if(ds.size()==arr.size())
         {
             ans.pb(ds);
-            return;
         }
         for(int i=0;i<arr.size();i++)
         {
