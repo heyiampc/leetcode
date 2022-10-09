@@ -1,6 +1,8 @@
 #define pb push_back
 #define pbb pop_back
 class Solution {
+//Prince Chaurasia
+//https://leetcode.com/princeforcode/
 public:
     bool isSafe(int row,int col, vector<string> &board, int n,vector<int> left, vector<int> upper, vector<int> lower)
     {
