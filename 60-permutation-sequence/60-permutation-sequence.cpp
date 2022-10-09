@@ -1,3 +1,5 @@
+//Prince Chaurasia
+//https://leetcode.com/princeforcode/
 #define pb push_back
 #define pbb pop_back
 class Solution {
@@ -19,8 +21,8 @@ public:
             num.erase(num.begin()+ k/fact);
             if(num.size()==0)
                 break;
-            k%=fact;
-            fact/=num.size();
+            k%=fact; // To find new k for new set of permutations
+            fact/=num.size(); // or calculate factorial for size-1
         }
         return ans;
     }
