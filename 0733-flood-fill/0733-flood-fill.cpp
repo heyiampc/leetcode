@@ -11,7 +11,7 @@ public:
     }
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
         int oldColor=image[sr][sc];
-        if(color==oldColor) return image;
+        if(color==oldColor) return image; //IMP else infinite recursive call
         fill(image,sr,sc,color,oldColor,image.size(),image[0].size());
         return image;
     }
