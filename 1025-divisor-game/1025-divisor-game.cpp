@@ -7,7 +7,7 @@ public:
         if(dp[n]!=-1) return dp[n];
         else
         {
-            for(int i=1;i<n;i++)
+            for(int i=1;i*i<=n;i++)
             {
                 if(n%i==0)
                 if(fun(n-i)==0) return dp[n]=1;
