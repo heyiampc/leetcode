@@ -11,6 +11,7 @@ public:
             {
                 if(n%i==0)
                 if(fun(n-i)==0) return dp[n]=1;
+                if(fun(n-(n/i)==0)) return dp[n]=1;
             }
         }
         return dp[n]=0;
