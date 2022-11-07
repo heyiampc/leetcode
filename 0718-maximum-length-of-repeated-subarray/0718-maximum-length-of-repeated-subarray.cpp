@@ -1,12 +1,7 @@
 class Solution {
 public:
     int findLength(vector<int>& nums1, vector<int>& nums2) {
-        string str1="", str2="";
-        for(auto x:nums1)
-            str1+=x;
-        for(auto x:nums2)
-            str2+=x;
-        int n=str1.size(),m=str2.size();
+    int n=nums1.size(),m=nums2.size();
     vector<vector<int>> dp(n+1,vector<int>(m+1,0));
     //Base Case
     for(int i=0;i<=n;i++) dp[i][0]=0;
@@ -17,7 +12,7 @@ public:
     {
         for(int j=1;j<=m;j++)
         {
-            if(str1[i-1]==str2[j-1])
+            if(nums1[i-1]==nums2[j-1])
             {
                 dp[i][j]=1+dp[i-1][j-1];
                 ans=max(ans,dp[i][j]);
