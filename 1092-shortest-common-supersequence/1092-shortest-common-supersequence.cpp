@@ -58,6 +58,7 @@ public:
         return ans;
     }
     string shortestCommonSupersequence(string str1, string str2) {
+        //To find length ans=n+m-len(lcs)
         return lcs(str1,str2);
     }
 };
