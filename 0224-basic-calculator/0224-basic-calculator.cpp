@@ -4,7 +4,7 @@ public:
          stack <long> nums, ops;
         long num = 0;
         long rst = 0;
-        long  sign = 1;
+        long sign = 1;
         for (char c : s) { 
             if (isdigit(c)) {
                 num = num * 10 + c - '0';
