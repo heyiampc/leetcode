@@ -30,8 +30,32 @@ public:
         // }
         // return max_profit;
         
-        //DP Solution
-        vector<vector<int>> dp(prices.size(),vector<int>(2,-1));
-        return fun(prices,0,prices.size(),1,dp);
+        //DP Solution memoization
+        // vector<vector<int>> dp(prices.size(),vector<int>(2,-1));
+        // return fun(prices,0,prices.size(),1,dp);
+        
+        //DP Tabulation
+        vector<vector<int>> dp(prices.size()+1,vector<int>(2,0));
+        int n=prices.size();
+        //Base Condition
+        dp[n][0]=dp[n][1]=0;
+        for(int i=n-1;i>=0;i--)
+            for(int buy=0;buy<=1;buy++)
+            {
+                 if(buy)
+            {
+            int take=-prices[i]+dp[i+1][0];
+            int nottake=0+dp[i+1][1];
+            profit=max(take,nottake);
+            }
+                else
+                    {
+            int take=prices[i]+dp[i+1][1];
+            int nottake=0+dp[i+1][0];
+            profit=max(take,nottake);
+                 }
+        dp[i][buy]=profit;
+    }
+        return dp[0][1];
     }
 };
