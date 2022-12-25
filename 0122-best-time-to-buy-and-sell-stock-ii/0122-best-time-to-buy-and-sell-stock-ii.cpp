@@ -1,61 +1,30 @@
 class Solution {
 public:
-    int profit=0;
-    int fun(vector<int> &nums, int i, int n, int buy, vector<vector<int>> &dp)
+    long fun(vector<int> &v, int index, int buy, long &profit, vector<vector<int>> &dp) 
     {
-        if(i==n)
+        //(+) selling stock money increased (-) buying stock money decreasd
+        if(index==v.size())
             return 0;
-        if(dp[i][buy]!=-1)
-            return dp[i][buy];
+        if(dp[index][buy]!=-1)
+            return dp[index][buy];
         if(buy)
         {
-            int take=-nums[i]+fun(nums,i+1,n,0,dp);
-            int nottake=0+fun(nums,i+1,n,1,dp);
-            profit=max(take,nottake);
+            long profit1=-v[index]+fun(v,index+1,0,profit,dp); //buy
+            long profit2=0+fun(v,index+1,1,profit,dp); //not buy this time go for next
+            profit=max(profit1,profit2);
         }
         else
         {
-            int take=nums[i]+fun(nums,i+1,n,1,dp);
-            int nottake=0+fun(nums,i+1,n,0,dp);
-            profit=max(take,nottake);
+            long profit1=v[index]+fun(v,index+1,1,profit,dp); //sell
+            long profit2=0+fun(v,index+1,0,profit,dp); // not sell
+            profit=max(profit1,profit2);
         }
-        return dp[i][buy]=profit;
+        return dp[index][buy]=profit;
     }
     int maxProfit(vector<int>& prices) {
-        //Greedy Solution
-        // int max_profit=0;
-        // for(int i=1;i<prices.size();i++)
-        // {
-        //     if(prices[i]>prices[i-1])max_profit+=prices[i]-prices[i-1];
-        // }
-        // return max_profit;
-        
-        //DP Solution memoization
-        // vector<vector<int>> dp(prices.size(),vector<int>(2,-1));
-        // return fun(prices,0,prices.size(),1,dp);
-        
-        //DP Tabulation
-        vector<vector<int>> dp(prices.size()+1,vector<int>(2,0));
+        long profit=0;
         int n=prices.size();
-        //Base Condition
-        dp[n][0]=dp[n][1]=0;
-        for(int i=n-1;i>=0;i--)
-            for(int buy=0;buy<=1;buy++)
-            {
-                 if(buy)
-            {
-            int take=-prices[i]+dp[i+1][0];
-            int nottake=0+dp[i+1][1];
-            profit=max(take,nottake);
-            }
-                else
-                    {
-            int take=prices[i]+dp[i+1][1];
-            int nottake=0+dp[i+1][0];
-            profit=max(take,nottake);
-                 }
-        dp[i][buy]=profit;
-    }
-        return dp[0][1];
+        vector<vector<int>> dp(n,vector<int>(2,-1)); //nx2 dp required only
+        return fun(prices,0,1,profit,dp);
     }
 };
