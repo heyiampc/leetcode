@@ -11,21 +11,18 @@ public:
         //base case
         dp[n][0]=dp[n][1]=0;
         for(int index=n-1;index>=0;index--)
-            for(int buy=0;buy<=1;buy++)
             {
-                if(buy)
         {
             long profit1=-prices[index]+dp[index+1][0]; //buy
             long profit2=0+dp[index+1][1]; //not buy this time go for next
-            profit=max(profit1,profit2);
+            dp[index][1]=max(profit1,profit2);
         }
-        else
-        {
+            
+        {     
             long profit1=prices[index]+dp[index+2][1]; //sell
             long profit2=0+dp[index+1][0]; // not sell
-            profit=max(profit1,profit2);
+            dp[index][0]=max(profit1,profit2);
         }
-                dp[index][buy]=profit;
             }
         return dp[0][1];
     }
