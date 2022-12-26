@@ -1,17 +1,32 @@
 class Solution {
 public:
-     int dp[5001][2];
-    int solve(vector<int> &ar, int i, bool bought) {
-        if(i >= ar.size()) return 0;
-        if(dp[i][bought]!=-1) return dp[i][bought];
-        
-        if(bought)
-        return dp[i][bought]=max( solve(ar,i+2,false)+ar[i] ,solve(ar,i+1,true));
-        else
-        return dp[i][bought]=max( solve(ar,i+1,true)-ar[i], solve(ar,i+1,false)); 
-    }
     int maxProfit(vector<int>& prices) {
-         memset(dp,-1,sizeof dp);
-        return solve(prices,0,false);
+        long profit=0;
+        int n=prices.size();
+        // vector<vector<int>> dp(n,vector<int>(2,-1)); //nx2 dp required only
+        // return fun(prices,0,1,profit,dp);
+        
+        //Tabulation
+        vector<vector<int>> dp(n+2,vector<int>(2,0));
+        //base case
+        dp[n][0]=dp[n][1]=0;
+        for(int index=n-1;index>=0;index--)
+            for(int buy=0;buy<=1;buy++)
+            {
+                if(buy)
+        {
+            long profit1=-prices[index]+dp[index+1][0]; //buy
+            long profit2=0+dp[index+1][1]; //not buy this time go for next
+            profit=max(profit1,profit2);
+        }
+        else
+        {
+            long profit1=prices[index]+dp[index+2][1]; //sell
+            long profit2=0+dp[index+1][0]; // not sell
+            profit=max(profit1,profit2);
+        }
+                dp[index][buy]=profit;
+            }
+        return dp[0][1];
     }
 };
