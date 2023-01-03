@@ -24,7 +24,19 @@ int fun(vector<int> &nums , int ind, int prev_ind, int n, vector<vector<int>> &d
     // }
     int lengthOfLIS(vector<int>& nums) {
         int n=nums.size();
-        vector<vector<int>>dp(n,vector<int>(n+1,-1));
-        return fun(nums,0,-1,n,dp);
+        // vector<vector<int>>dp(n,vector<int>(n+1,-1));
+        // return fun(nums,0,-1,n,dp);
+        vector<vector<int>>dp(n+1,vector<int>(n+1,0));
+        for(int ind=n-1;ind>=0;ind--)
+            for(int prev_ind=ind-1;prev_ind>=-1;prev_ind--)
+            {
+        int len1=0+dp[ind+1][prev_ind+1]; //not take
+        int len2=0;
+        if( prev_ind==-1 || nums[ind]>nums[prev_ind])
+            len2=1+dp[ind+1][ind+1];
+       dp[ind][prev_ind+1]=max(len1,len2);
+        }
+        return dp[0][-1+1];
     }
+    
 };
