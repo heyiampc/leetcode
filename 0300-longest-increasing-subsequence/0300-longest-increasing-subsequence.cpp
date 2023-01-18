@@ -30,10 +30,10 @@ int fun(vector<int> &nums , int ind, int prev_ind, int n, vector<vector<int>> &d
         for(int ind=n-1;ind>=0;ind--)
             for(int prev_ind=ind-1;prev_ind>=-1;prev_ind--)
             {
-        int len1=0+dp[ind+1][prev_ind+1]; //not take
+        int len1=0+dp[ind+1][prev_ind+1]; //not take cordinate shift therefore second parameter +1
         int len2=0;
         if( prev_ind==-1 || nums[ind]>nums[prev_ind])
-            len2=1+dp[ind+1][ind+1];
+            len2=1+dp[ind+1][ind+1]; //cordinate shift therefore second parameter +1
        dp[ind][prev_ind+1]=max(len1,len2);
         }
         return dp[0][-1+1];
