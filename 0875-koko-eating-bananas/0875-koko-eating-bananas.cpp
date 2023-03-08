@@ -1,30 +1,26 @@
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-      int left = 1;
-        int right = *max_element(piles.begin(), piles.end());
-        
-        while (left < right) {
-            int mid = (left + right) / 2;
-            if (canEatAll(piles, mid, h)) {
-                right = mid;
-            } else {
-                left = mid + 1;
+        int n=piles.size();
+        int left=1;
+        sort(piles.begin(),piles.end());
+        int right=piles[n-1]; // Max answer can be largest element of piles
+        int res=right;
+        while(left<=right)
+        {
+            int k=left+(right-left)/2;
+            long long hours=0;
+            for(auto x:piles)
+                hours+=ceil(1.0 * x/k);
+            if(hours<=h)
+            {
+                res=min(res,k);
+                right=k-1;
             }
+            else
+                left=k+1;
         }
-        
-        return left;
+        return res;
     }
     
-private:
-    bool canEatAll(vector<int>& piles, int speed, int h) {
-        int time = 0;
-        for (int pile : piles) {
-            time += (pile - 1) / speed + 1;
-            if (time > h) {
-                return false;
-            }
-        }
-        return true;
-    }
 };
