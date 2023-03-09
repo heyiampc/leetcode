@@ -5,7 +5,7 @@ public:
         if(binary_search(nums.begin(),nums.end(),target))
         {
         ans[0]=lower_bound(nums.begin(),nums.end(),target)-nums.begin();
-        ans[1]=upper_bound(nums.begin(),nums.end(),target)-nums.begin()-1;
+        ans[1]=lower_bound(nums.begin(),nums.end(),target+1)-nums.begin()-1;
         }
         return ans;
     }
