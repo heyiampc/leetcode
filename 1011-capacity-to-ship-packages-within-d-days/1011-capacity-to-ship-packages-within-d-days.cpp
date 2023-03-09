@@ -1,34 +1,45 @@
 class Solution {
 public:
-    bool isValid(vector<int>& weights, int days,int mid){
-        int wt=0;
-        int d=1;
-        for(int i=0;i<weights.size();i++){
-            wt+=weights[i];
-            if(wt>mid){
-                d++;
-                wt=weights[i];
-            }
-            if(d>days){
-                return false;
+    bool isPossible(vector<int> &nums,int days,int mid)
+    {
+        int day=1;
+        int sum=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+            sum+=nums[i];
+            if(sum>mid)
+            {
+                day++;
+                sum=nums[i];
             }
         }
-        return true;
+        return day<=days;
     }
     int shipWithinDays(vector<int>& weights, int days) {
-         int ans=0;
-        int low=INT_MIN,high=0;
-        for(auto it : weights){
-            low=max(low,it);
-            high+=it;
+        int left=0;
+        int sum=0;
+        for(auto x:weights)
+        {
+            left=max(left,x);
+            sum+=x;
         }
-        while(low<=high){
-            int mid=low+(high-low)/2;
-            if(isValid(weights,days,mid)){
+        int right=sum;
+        int ans;
+        while(left<=right)
+        {
+            int mid=left+(right-left)/2;
+            int curload=0;
+            if(isPossible(weights,days,mid))
+            {
                 ans=mid;
-                high=mid-1;
-            }else{
-                low=mid+1;
+                //Try to decrease the load
+                right=mid-1;
+            }
+            else
+            {
+                //Increase the load
+                left=mid+1;
             }
         }
         return ans;
