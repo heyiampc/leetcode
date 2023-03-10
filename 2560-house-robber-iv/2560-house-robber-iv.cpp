@@ -15,7 +15,7 @@ public:
     }
     int minCapability(vector<int>& nums, int k) {
         int left=1;
-        int right=*max_element(nums.begin(),nums.end());
+        int right=INT_MAX;
         int ans;
         while(left<=right)
         {
