@@ -1,17 +1,18 @@
 class Solution {
 public:
-    int gmaxi;
-    int fun(vector<int> &nums,int n)
+    int maxi;
+    int fun(vector<int> &nums, int n)
     {
-        if(n==1)
-            return nums[0];
-        int curmax=max(nums[n-1],fun(nums,n-1)+nums[n-1]);
-        gmaxi=max(gmaxi,curmax);
-        return curmax;
+        if(n==0) return 0;
+        if(n==1) return nums[0];
+        int prev=fun(nums,n-1)+nums[n-1];
+        int curr=max(nums[n-1],prev);
+        maxi=max(maxi,curr);
+        return curr;
     }
     int maxSubArray(vector<int>& nums) {
-        gmaxi=nums[0];
+        maxi=nums[0];
         fun(nums,nums.size());
-        return gmaxi;
+        return maxi;
     }
 };
