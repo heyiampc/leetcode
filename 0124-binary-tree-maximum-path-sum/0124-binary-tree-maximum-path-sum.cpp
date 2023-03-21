@@ -17,8 +17,8 @@ public:
         return 0;
         int left=max(0,fun(root->left,maxi)); // To avoid negative sum
         int right=max(0,fun(root->right,maxi)); // To avoid negative sum
-        maxi=max(maxi,root->val + (left+right));
-        return max(left,right)+root->val;
+        maxi=max(maxi,root->val + (left+right)); // maxi=root->val + left+right
+        return max(left+root->val,right+root->val); // max sum left part or right part
     }
 // int solve(TreeNode* root,int &res)
 //     {
