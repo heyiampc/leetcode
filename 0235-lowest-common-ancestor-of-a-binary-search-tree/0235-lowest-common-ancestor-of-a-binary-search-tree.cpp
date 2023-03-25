@@ -12,9 +12,7 @@ class Solution {
 public:
     TreeNode* fun(TreeNode* root, TreeNode* p, TreeNode* q)
     {
-        if(root==NULL)
-            return NULL;
-        if(p->val==root->val || q->val==root->val)
+        if(root==NULL || p->val==root->val || q->val==root->val)
             return root;
         if(p->val < root->val && q->val < root->val)
             return fun(root->left,p,q);
