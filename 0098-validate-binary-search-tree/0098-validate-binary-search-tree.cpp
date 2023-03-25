@@ -18,7 +18,9 @@ public:
             return true;
         if(root->val>=right || root->val <= left)
             return false;
-        return fun(root->left,left,root->val) && fun(root->right,root->val,right);
+        bool lt=fun(root->left,left,root->val);
+        bool rt=fun(root->right,root->val,right);
+        return lt and rt;
     }
     bool isValidBST(TreeNode* root) {
         return fun(root,LLONG_MIN,LLONG_MAX);
