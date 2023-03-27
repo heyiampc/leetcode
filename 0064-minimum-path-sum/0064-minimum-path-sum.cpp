@@ -1,18 +1,22 @@
 class Solution {
 public:
-    int fun(int m, int n, vector<vector<int>> &dp, vector<vector<int>>& grid)
+    int fun(int i, int j, vector<vector<int>> &dp, vector<vector<int>>& grid)
     {
-        if(m==0 &&n==0) return grid[0][0];
-        if(m<0 || n<0) return 100000; //INT_MAX
-        if(dp[m][n]!=-1) return dp[m][n];
-        int up=grid[m][n]+fun(m-1,n,dp,grid);
-        int left=grid[m][n]+fun(m,n-1,dp,grid);
-        return dp[m][n]=min(up,left);
+        if(i==0 && j==0)
+            return grid[0][0];
+        if(i<0 || j<0)
+            return 1e8;
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        int  ans1=fun(i-1,j,dp,grid)+grid[i][j]; //Up
+        int  ans2=fun(i,j-1,dp,grid)+grid[i][j]; //Left
+        return dp[i][j]=min(ans1,ans2);
     }
     int minPathSum(vector<vector<int>>& grid) {
-        int m=grid.size();
-        int n=grid[0].size();
-        vector<vector<int>> dp(m,vector<int>(n,-1));
-        return fun(m-1,n-1,dp,grid);
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<vector<int>> dp(n,vector<int>(m,-1));
+        int sum=fun(n-1,m-1,dp,grid);
+        return sum;
     }
 };
