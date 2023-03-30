@@ -10,6 +10,18 @@ public:
         if(dp.find(k)!=dp.end())
             return dp[k];
         int n=s1.size();
+        
+        //Avoid necessary Call 
+        //return false if frequency of elements are not equal
+        vector<int> cs1(26),cs2(26);
+        for(int i=0;i<n;i++)
+        {
+            cs1[s1[i]-'a']++;
+            cs2[s2[i]-'a']++;
+        }
+        if(cs1!=cs2)
+            return dp[k]=false;
+        
         for(int i=1;i<s1.size();i++)
         {
             //(first half , first half) , (second half ,second half)
