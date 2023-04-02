@@ -25,13 +25,13 @@ public:
         int sum2=0;
         for(int i=0;i<n;i++)
         {
-            num1dif[i]=nums1[i]-nums2[i];
-            num2dif[i]=nums2[i]-nums1[i];
+            num1dif[i]=nums2[i]-nums1[i];
+            num2dif[i]=nums1[i]-nums2[i];
             sum1+=nums1[i];
             sum2+=nums2[i];
         }
-        int ans1=maxSubArray(num1dif)+sum2;
-        int ans2=maxSubArray(num2dif)+sum1;
+        int ans1=maxSubArray(num1dif)+sum1;
+        int ans2=maxSubArray(num2dif)+sum2;
         return max(ans1,ans2);
     }
 };
