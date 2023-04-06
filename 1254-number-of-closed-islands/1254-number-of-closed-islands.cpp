@@ -4,9 +4,9 @@ public:
     {
         if(i<0 || j<0 || i>=grid.size() || j>=grid[0].size())
             return false;
-        if(grid[i][j]==1)
+        if(grid[i][j])
             return true;
-        grid[i][j]=1; //Mark Visited
+        grid[i][j]=2; //Mark Visited
         bool l=fun(i,j-1,grid);
         bool r=fun(i,j+1,grid);
         bool u=fun(i-1,j,grid);
