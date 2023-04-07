@@ -32,19 +32,6 @@ public:
             if(g[i][m-1]==1)
                 dfs(i,m-1,g);
         int count=0;
-        // for(int i=0;i<n;i++)
-        // {
-        //     for(int j=0;j<m;j++)
-        //     {
-        //         if(i==0 || i==n-1 || j==0 || j==m-1) // Boundary dfs only
-        //         {
-        //             if(g[i][j]==1)
-        //             {
-        //                 dfs(i,j,g);
-        //             }
-        //         }
-        //     }
-        // }
         //Counting ones
         for(int i=0;i<n;i++)
         {
