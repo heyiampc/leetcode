@@ -8,22 +8,23 @@ class Solution {
     bool bfs(int src,vector<int> adj[],int vis[])
     {
         vis[src]=1;
-        queue<pair<int,int>>  q;
+        
+        queue<pair<int,int>> q;
         q.push({src,-1});
         while(!q.empty())
         {
-            int child=q.front().first;
+            int node=q.front().first;
             int parent=q.front().second;
             q.pop();
-            
-            for(auto adjnode:adj[child])
+            //traverse adjacent nodes
+            for(auto adjnodes:adj[node])
             {
-                if(!vis[adjnode])
+                if(!vis[adjnodes])
                 {
-                    vis[adjnode]=1;
-                    q.push({adjnode,child});
+                    vis[adjnodes]=1;
+                    q.push({adjnodes,node});
                 }
-                else if(parent!=adjnode)
+                else if(parent!=adjnodes)
                 {
                     return true;
                 }
