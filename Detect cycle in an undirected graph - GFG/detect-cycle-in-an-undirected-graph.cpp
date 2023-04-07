@@ -5,6 +5,22 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
     private:
+    bool dfs(int src,int parent,vector<int> adj[],int vis[])
+    {
+        vis[src]=1;
+        
+        for(auto adjnodes:adj[src])
+        {
+            if(!vis[adjnodes])
+            {
+                vis[adjnodes]=1;
+                if(dfs(adjnodes,src,adj,vis)) //src become parent for adjnodes
+                return true;
+            }
+            else if(adjnodes!=parent) return true;
+        }
+        return false;
+    }
     bool bfs(int src,vector<int> adj[],int vis[])
     {
         vis[src]=1;
@@ -41,7 +57,11 @@ class Solution {
         {
             if(!vis[i])
             {
-                if(bfs(i,adj,vis))
+                //bfs
+                // if(bfs(i,adj,vis))
+                // return true;
+                //dfs
+                if(dfs(i,-1,adj,vis))
                 return true;
             }
         }
