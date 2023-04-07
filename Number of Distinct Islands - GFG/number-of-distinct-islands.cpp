@@ -14,7 +14,7 @@ class Solution {
     {
         if(i<0 || j<0 || i>=grid.size() || j>=grid[0].size())
             return;
-        if(vis[i][j] || grid[i][j]==0)
+        if(vis[i][j] || grid[i][j]!=1)
             return;
         vis[i][j]=true; //Mark visited
         vec.push_back({i-i0,j-j0}); // (cordinates - base cordinates) to identify similar components
