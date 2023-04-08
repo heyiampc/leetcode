@@ -50,6 +50,7 @@ class Solution
                 {
                     q.push({{nr,nc},tm+1});
                     vis[nr][nc]=true;
+                    grid[nr][nc]=2;
                 }
             }
         }
