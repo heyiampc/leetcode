@@ -9,18 +9,17 @@ public:
         {
             if(!vis[x])
             {
-            if(!dfs(x,adj,vis,pathvis))
+            if(dfs(x,adj,vis,pathvis)==true)
             {
-            return false;
+            return true;
             }
             }
             else if(vis[x] && pathvis[x])
-            return false;
+            return true;
         }
         pathvis[i]=0;
-        return true;
+        return false;
     }
-    //Detect cycle in an undirected graph
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         vector<int> adj[numCourses];
         for(int i = 0; i < prerequisites.size(); i++) {
@@ -35,9 +34,9 @@ public:
         for(int i=0;i<V;i++)
         {
             if(!vis[i])
-            if(!dfs(i,adj,vis,pathvis))
-            return false;
+            if(dfs(i,adj,vis,pathvis))
+            return !true;
         }
-        return true;
+        return !false;
     }
 };
