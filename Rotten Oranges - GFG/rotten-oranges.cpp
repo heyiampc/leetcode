@@ -54,6 +54,24 @@ class Solution
             }
         }
         
+        // for(int i=0;i<n;i++){
+        // for(int j=0;j<m;j++)
+        // {
+        //     cout<<vis[i][j]<<" ";
+        // }
+        // cout<<endl;
+        // }
+        
+        // cout<<"---------------------"<<endl;
+        //         for(int i=0;i<n;i++){
+        // for(int j=0;j<m;j++)
+        // {
+        //     cout<<grid[i][j]<<" ";
+        // }
+        // cout<<endl;
+        // }
+        
+        
         //check if all are rooten or not
         for(int i=0;i<n;i++)
         for(int j=0;j<m;j++)
