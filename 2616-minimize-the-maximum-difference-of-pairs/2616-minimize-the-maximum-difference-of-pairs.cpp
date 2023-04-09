@@ -4,13 +4,15 @@ private:
     bool isPossible(vector<int> &nums, ll mid,ll p)
     {
         int n=nums.size();
-        for(int i=0;i<n-1;i++)
+        for(int i=0;i<n-1;)
         {
             if(abs(nums[i]-nums[i+1])<=mid)
             {
                 p--;
-                i++;
+                i+=2; //inc 2
             }
+            else
+                i++;
         }
         return p<=0;
     }
