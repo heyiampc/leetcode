@@ -21,20 +21,59 @@ class Solution
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
 	    // code here
-	    vector<int> ans,vis(V,0);
-	    stack<int> st;
-	    for(int i=0;i<V;i++)
-	    {
-	        if(!vis[i])
-	        dfs(i,adj,st,vis);
-	    }
+	   // vector<int> ans,vis(V,0);
+	   // stack<int> st;
+	   // for(int i=0;i<V;i++)
+	   // {
+	   //     if(!vis[i])
+	   //     dfs(i,adj,st,vis);
+	   // }
 	    
-	    while(!st.empty())
-	    {
-	        ans.push_back(st.top());
-	        st.pop();
-	    }
-	    return ans;
+	   // while(!st.empty())
+	   // {
+	   //     ans.push_back(st.top());
+	   //     st.pop();
+	   // }
+	   // return ans;
+	   
+	   //Kahn's Algorithm
+	   vector<int> indegree(V,0),ans;
+	   queue<int> q;
+	   
+	   //indgree
+	   for(int i=0;i<V;i++)
+	   {
+	       for(auto &x:adj[i])
+	       {
+	           indegree[x]++;
+	       }
+	   }
+	   //indgree equals to zero push to queue
+	   int in=0;
+	   for(auto &x:indegree)
+	   {
+	       if(x==0)
+	       q.push(in);
+	       in++;
+	   }
+	   
+	   //BFS traversal
+	   while(!q.empty())
+	   {
+	       int node=q.front();
+	       q.pop();
+	       ans.push_back(node);
+	       
+	       for(auto &adjnodes:adj[node])
+	       {
+	           indegree[adjnodes]--;
+	           if(indegree[adjnodes]==0)
+	           q.push(adjnodes);
+	       }
+	   }
+	   
+	   return ans;
+	   
 	}
 };
 
