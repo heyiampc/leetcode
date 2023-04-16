@@ -50,7 +50,7 @@ class Solution {
         {
             int node=st.top();
             st.pop();
-            
+            if(node!=1e9)
             for(auto &it:adj[node])
             {
                 int u=it.first;
