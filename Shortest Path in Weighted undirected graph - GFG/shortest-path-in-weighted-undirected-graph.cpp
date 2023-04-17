@@ -14,9 +14,7 @@ class Solution {
             adj[it[1]].push_back({it[0],it[2]});
         }
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
-        vector<int> dist(n+1,1e9),parent(n+1);
-        for(int i=1;i<=n;i++)
-        parent[i]=i;
+        vector<int> dist(n+1,1e9),parent(n+1,1);
         //src
         dist[1]=0;
         pq.push({1,0});
@@ -41,6 +39,11 @@ class Solution {
         }
         if(dist[n]==1e9)
         return {-1};
+        cout<<"-----------"<<endl;
+        for(auto &x:parent)
+        cout<<x<<" ";
+        cout<<endl<<"----------"<<endl;
+        
         vector<int> path;
         int node=n;
         while(parent[node]!=node){
