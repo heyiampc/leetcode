@@ -11,6 +11,7 @@
  */
 class Solution {
 public:
+    //find the level of the node
     int dfs(TreeNode* root ,int x,int d)
     {
         if(root==NULL)
@@ -21,6 +22,7 @@ public:
         int b=dfs(root->right,x,d+1);
         return a+b;
     }
+    //find the parent of a node
     TreeNode* dfs1(TreeNode* root, int x)
     {
         if(root==NULL || root->val==x)
@@ -42,14 +44,7 @@ public:
         TreeNode* p2;
         p1=dfs1(root,x);
         p2=dfs1(root,y);
-        // if(p1)
-        // cout<<p1->val<<" ";
-        // else
-        //     cout<<"NULL ";
-        // if(p2)
-        // cout<<p2->val<<endl;
-        // else
-        //     cout<<"NULL "<<endl;
+        //same level and not having same parents
         return l1==l2 && p1!=p2;
     }
 };
