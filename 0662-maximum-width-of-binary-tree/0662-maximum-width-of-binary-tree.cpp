@@ -58,6 +58,37 @@ public:
         return maxi;
     }
     int widthOfBinaryTree(TreeNode* root) {
-        return levelOrder(root);
+        // return levelOrder(root);
+        if(root==NULL)
+        return 0;
+        queue<pair<TreeNode*,ll>> q;
+        q.push({root,0});
+        ll maxi=0;
+        //BFS
+        while(!q.empty())
+        {
+            ll n=q.size();
+            ll first=q.front().second;
+            ll last=q.back().second;
+            maxi=max(maxi,(last-first+1));
+            ll mini=q.front().second;
+            while(n--)
+            {
+                auto it=q.front();
+                q.pop();
+                TreeNode* curr=it.first;
+                ll d=it.second-mini;
+                if(curr->left)
+                {
+                    q.push({curr->left,(2*d)+1});
+                }
+                if(curr->right)
+                {
+                    q.push({curr->right,(2*d)+2});
+                }
+                
+            }
+        }
+        return maxi;
     }
 };
