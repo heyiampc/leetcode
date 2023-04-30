@@ -4,13 +4,11 @@ public:
         map<int,int> mp;
         for(auto &x:edges)
             for(auto &j:x)
+            {
                 mp[j]++;
-        int maxi=0;
-        for(auto &x:mp){
-            if(maxi<x.second){
-                maxi=x.first;
+                if(mp[j]>1)
+                    return j;
             }
-        }
-        return maxi;
+        return 0;
     }
 };
