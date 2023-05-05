@@ -17,21 +17,18 @@ public:
         if(vcount==k)
             return k;
         int maxi=vcount;
-        string temp=s.substr(0,k);
-        // cout<<temp<<endl;
+        int j=0;
         for(int i=k;i<n;i++)
         {
             if(isvowel(s[i]))
             {
                 vcount++;
             }
-            if(isvowel(temp[0]))
+            if(isvowel(s[j]))
             {
                 vcount--;
             }
-            temp.erase(0,1);
-            temp+=s[i];
-            // cout<<temp<<endl;
+            j++;
             maxi=max(maxi,vcount);
         }
         return maxi;
