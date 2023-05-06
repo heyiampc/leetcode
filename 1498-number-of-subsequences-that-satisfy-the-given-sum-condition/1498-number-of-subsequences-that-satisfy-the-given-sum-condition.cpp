@@ -17,15 +17,20 @@ public:
         calc(n);
         sort(nums.begin(),nums.end());
         int count=0;
-        for(int i=0;i<n;i++)
+        int i=0;
+        int j=n-1;
+        while(i<=j)
         {
-            if(nums[i]*2>target)
-                break;
             int tar=target-nums[i];
-            int ub=upper_bound(nums.begin(),nums.end(),tar)-nums.begin();
-            cout<<ub-i-1<<" ";
-            // count+=pow(2,ub-i-1);
-            count=(count+pow[ub-i-1])%MOD;
+            if(nums[i]+nums[j]<=target)
+            {
+                count=(count+pow[j-i])%MOD;
+                i++;
+            }
+            else
+            {
+                j--;
+            }
         }
         return count;
     }
