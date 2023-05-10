@@ -1,35 +1,26 @@
 class Solution {
 public:
-    void print(int arr[])
-    {
-        for(int i=0;i<3;i++)
-            cout<<arr[i];
-    }
-    void sortColors(vector<int>& nums) {
-        int arr[3]={0};
-        for(auto &x:nums)
-            arr[x]++;
-        int r=arr[0];
-        int w=arr[1];
-        int b=arr[2];
-        for(int i;i<nums.size();i++)
+    void sortColors(vector<int>& arr) {
+        int n=arr.size();
+        int l=0;
+        int mid=0;
+        int high=n-1;
+        while(mid<=high)
         {
-            if(r)
+            if(arr[mid]==0)
             {
-            nums[i]=0;
-            r--;
-            cout<<" "<<r<<" ";
+                swap(arr[l],arr[mid]);
+                l++;
+                mid++;
             }
-            else if(w)
+            else if(arr[mid]==1)
             {
-            nums[i]=1;
-            w--;
-            cout<<" "<<w<<" ";
+                mid++;
             }
-            else if(b)
+            else
             {
-            nums[i]=2;
-            cout<<" "<<b<<" ";
+                swap(arr[mid],arr[high]);
+                high--;
             }
         }
     }
