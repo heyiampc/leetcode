@@ -19,6 +19,7 @@ public:
                     matrix[t][i]=cnt++;
                 }
                 t++;
+                dir=(dir+1)%4;
             }
             else if(dir==1)
             {
@@ -27,6 +28,7 @@ public:
                     matrix[i][r]=cnt++;
                 }
                 r--;
+                dir=(dir+1)%4;
             }
             else if(dir==2)
             {
@@ -35,6 +37,7 @@ public:
                     matrix[d][i]=cnt++;
                 }
                 d--;
+                dir=(dir+1)%4;
             }
             else if(dir==3)
             {
@@ -43,8 +46,8 @@ public:
                    matrix[i][l]=cnt++;
                 }
                 l++;
+                dir=(dir+1)%4;
             }
-            dir=(dir+1)%4;
         }
         return matrix;
     }
