@@ -11,32 +11,43 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        ListNode* temp=head;
+        // ListNode* temp=head;
+        // if(head==NULL || head->next==NULL)
+        //     return head;
+        // int size=0;
+        // ListNode* s=head;
+        // while(s)
+        // {
+        //     size++;
+        //     s=s->next;
+        // }
+        // bool flag=false;
+        // if(size%2!=0)
+        // flag=true;
+        // while(temp && temp->next && temp->next->next)
+        // {
+        //     int tval=temp->val;
+        //     temp->val=temp->next->val;
+        //     temp->next->val=tval;
+        //     temp=temp->next->next;
+        // }
+        // if(!flag){
+        // cout<<temp->val;
+        // int tval=temp->val;
+        // temp->val=temp->next->val;
+        // temp->next->val=tval;
+        // }
+        // return head;
+        
+        //recursive sol
+        
         if(head==NULL || head->next==NULL)
             return head;
-        int size=0;
-        ListNode* s=head;
-        while(s)
-        {
-            size++;
-            s=s->next;
-        }
-        bool flag=false;
-        if(size%2!=0)
-        flag=true;
-        while(temp && temp->next && temp->next->next)
-        {
-            int tval=temp->val;
-            temp->val=temp->next->val;
-            temp->next->val=tval;
-            temp=temp->next->next;
-        }
-        if(!flag){
-        cout<<temp->val;
-        int tval=temp->val;
-        temp->val=temp->next->val;
-        temp->next->val=tval;
-        }
+        
+        int tmp=head->val;
+        head->val=head->next->val;
+        head->next->val=tmp;
+        swapPairs(head->next->next);
         return head;
     }
 };
