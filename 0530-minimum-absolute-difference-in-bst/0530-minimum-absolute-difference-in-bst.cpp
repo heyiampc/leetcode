@@ -23,15 +23,18 @@ public:
     int getMinimumDifference(TreeNode* root) {
         fun(root);
         int mini=INT_MAX;
-        for(int i=0;i<vec.size();i++)
-        {
-            for(int j=0;j<vec.size();j++)
-            {
-                if(i==j)
-                    continue;
-                mini=min(mini,abs(vec[i]-vec[j]));
-            }
-        }
+        // for(int i=0;i<vec.size();i++)
+        // {
+        //     for(int j=0;j<vec.size();j++)
+        //     {
+        //         if(i==j)
+        //             continue;
+        //         mini=min(mini,abs(vec[i]-vec[j]));
+        //     }
+        // }
+        sort(vec.begin(),vec.end());
+        for(int i=0;i<vec.size()-1;i++)
+            mini=min(mini,abs(vec[i]-vec[i+1]));
         return mini;
     }
 };
