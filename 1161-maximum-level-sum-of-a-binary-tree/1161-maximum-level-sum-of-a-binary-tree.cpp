@@ -11,7 +11,6 @@
  */
 class Solution {
 public:
-    using ll=long long;
     map<int,int> levelsum;
     void dfs(TreeNode* root,int level)
     {
@@ -23,15 +22,11 @@ public:
     }
     int maxLevelSum(TreeNode* root) {
         dfs(root,0);
-        int ans;
-        int maxi=INT_MIN;
-        for(auto &x:levelsum)
-        {
-         if(x.second>maxi)
-         {
-             maxi=x.second;
-             ans=x.first+1;
-         }
+        int ans,maxi=INT_MIN;
+        for(auto &[a,b]:levelsum){
+         if(b>maxi){
+             maxi=b;
+             ans=a+1;}
         }
         return ans;
     }
