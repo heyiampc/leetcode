@@ -23,17 +23,17 @@ public:
     }
     long long kthLargestLevelSum(TreeNode* root, int k) {
         dfs(root,0);
-        priority_queue<pair<ll,ll>> pq;
+        priority_queue<ll> pq;
         ll ans,maxi=INT_MIN;
         for(auto &[a,b]:levelsum){
             // cout<<b<<" ";
-            pq.push({b,a+1});
+            pq.push(b);
         }
         if(k>pq.size())
             return -1;
         k-=1;
         while(k--)
             pq.pop();
-        return pq.top().first;
+        return pq.top();
     }
 };
