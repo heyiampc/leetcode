@@ -1,26 +1,26 @@
-#define ll long long
 class Solution {
 public:
-    ll isPossible(vector<int> &nums, vector<int> &cost , ll target)
+    using ll=long long;
+    ll check(ll mid,vector<int> &nums,vector<int> &costs)
     {
-        ll count=0;
+        ll cost=0;
         for(int i=0;i<nums.size();i++)
         {
-            count+=cost[i]*(abs(nums[i]-target));
+            cost+=costs[i]*abs(nums[i]-mid);
         }
-        return count;
+        return cost;
     }
     long long minCost(vector<int>& nums, vector<int>& cost) {
         int n=nums.size();
-        int left=*min_element(nums.begin(),nums.end());
-        int right=*max_element(nums.begin(),nums.end());
+        ll left=0;
+        ll right=*max_element(nums.begin(),nums.end());
         ll ans=LLONG_MAX;
         while(left<=right)
         {
             ll mid=left+(right-left)/2;
-            ll x=isPossible(nums,cost,mid);
-            ll y=isPossible(nums,cost,mid+1);
-            if(x<y)
+            ll x=check(mid,nums,cost);
+            ll y=check(mid+1,nums,cost);
+            if(x<y)   
             {
                 ans=min(ans,x);
                 right=mid-1;
