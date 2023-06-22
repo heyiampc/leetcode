@@ -1,32 +1,30 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& prices, int fee) {
-        long profit=0;
-        int n=prices.size();
-        // vector<vector<int>> dp(n,vector<int>(2,-1)); //nx2 dp required only
-        // return fun(prices,0,1,profit,dp);
-        
-        //Tabulation
-        vector<vector<int>> dp(n+1,vector<int>(2,0));
-        //base case
-        dp[n][0]=dp[n][1]=0;
-        for(int index=n-1;index>=0;index--)
-            for(int buy=0;buy<=1;buy++)
-            {
-                if(buy)
+    using ll=long long;
+    ll dp[50001][2];
+    int fun(int i,vector<int> &nums,int buy,int fee)
+    {
+        if(i>=nums.size())
+            return 0;
+        if(dp[i][buy]!=-1)
+            return dp[i][buy];
+        int ans=0;
+        if(buy)
         {
-            long profit1=-prices[index]+dp[index+1][0]; //buy
-            long profit2=0+dp[index+1][1]; //not buy this time go for next
-            profit=max(profit1,profit2);
+            ll take=-nums[i]+fun(i+1,nums,0,fee); //buy
+            ll not_take=0+fun(i+1,nums,1,fee); //not buy
+            ans=max(take,not_take);
         }
         else
         {
-            long profit1=prices[index]+dp[index+1][1]-fee; //sell
-            long profit2=0+dp[index+1][0]; // not sell
-            profit=max(profit1,profit2);
+            ll take=nums[i]+fun(i+1,nums,1,fee)-fee;
+            ll not_take=0+fun(i+1,nums,0,fee);
+            ans=max(take,not_take);
         }
-                dp[index][buy]=profit;
-            }
-        return dp[0][1];
+        return dp[i][buy]=ans;
+    }
+    int maxProfit(vector<int>& prices, int fee) {
+        memset(dp,-1,sizeof(dp));
+        return fun(0,prices,1,fee);
     }
 };
