@@ -4,10 +4,8 @@ public:
     long long totalCost(vector<int>& nums, int k, int candidates) {
         priority_queue<ll,vector<ll>,greater<ll>> pq1;
         priority_queue<ll,vector<ll>,greater<ll>> pq2;
-        vector<int> vis(nums.size(),0);
         int i1=0;
         while(i1<candidates){
-            vis[i1]=1;
             pq1.push(nums[i1++]);
         }
         if(candidates > nums.size()- candidates){
@@ -17,7 +15,6 @@ public:
         int k1=candidates;
         int k2=0;
         while(k1--){
-            vis[i2]=1;
             pq2.push(nums[i2--]);
         }
         // while(!pq1.empty()){
@@ -52,7 +49,6 @@ public:
                 cout<<pq1.top()<<" ";
                 pq1.pop();
                 if(i1<nums.size() && i1<=i2){
-                    vis[i1]=1;
                 pq1.push(nums[i1++]);
                 }
             }
@@ -62,7 +58,6 @@ public:
                 cout<<pq2.top()<<" ";
                 pq2.pop();
                 if(i2>=0 && i1<=i2){
-                    vis[i2]=1;
                 pq2.push(nums[i2--]);}
                 
             }
