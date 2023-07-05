@@ -6,13 +6,12 @@ public:
         int maxi=0;
         int count=0;
         int l=0;
+        //skip beg zeros
         while(nums[l]!=1 && l<nums.size())
             l++;
-        if(l>i)
-            flag=1;
         for(int j=l;j<nums.size();j++)
         {
-            if(j==i){
+            if(j==i){ //  if 0 which is to be deleted found skip
                 flag=1;
             }
             else if(nums[j]==1)
@@ -22,7 +21,6 @@ public:
             }
             maxi=max(maxi,count);
         }
-        if(!flag) maxi++;
         return maxi;
     }
     int longestSubarray(vector<int>& nums) {
