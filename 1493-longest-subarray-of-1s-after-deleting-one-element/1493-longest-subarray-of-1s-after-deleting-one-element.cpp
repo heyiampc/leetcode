@@ -4,44 +4,23 @@ public:
     {
         int flag=0;
         int maxi=0;
+        int count=0;
         int l=0;
-        int r=0;
         while(nums[l]!=1 && l<nums.size())
             l++;
-        r=l+1;
-        while(l<r && r<nums.size())
+        if(l>i)
+            flag=1;
+        for(int j=l;j<nums.size();j++)
         {
-            if(l==i && r!=i)
-            {
-                flag=true;
-                // cout<<l<<" "<<r<<"|"<<nums[l]<<" "<<nums[r]<<endl;
-                maxi=max(maxi,r-l);
-                l++;
+            if(j==i){
+                flag=1;
             }
-            else if(l!=i && r==i)
-            {
-                flag=true;
-                // cout<<l<<" "<<r<<"|"<<nums[l]<<" "<<nums[r]<<endl;
-                maxi=max(maxi,r-l);
-                r++; 
-            }
+            else if(nums[j]==1)
+                count++;
             else{
-            if(nums[l]==1 && nums[r]==1){
-                // cout<<l<<" "<<r<<"|"<<nums[l]<<" "<<nums[r]<<endl;
-                maxi=max(maxi,r-l);
-                r++;
+                count=0;
             }
-            else if(nums[l]!=1){
-                l++;
-                if(l==r)
-                    r++;
-            }
-            else if(nums[r]!=1)
-            {
-                l=r+1;
-                r=l+1;
-            }
-        }
+            maxi=max(maxi,count);
         }
         if(!flag) maxi++;
         return maxi;
