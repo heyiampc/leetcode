@@ -27,8 +27,23 @@ public:
         }
         return dp[l][r]=min(basic,greedy);
     }
+    // Alternate Solution
+    int fun1(int i, int j,string &s)
+    {
+        if(i==j)
+            return 1;
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        int ans=1e9;
+        for(int k=i;k<j;k++)
+        {
+            ans=min(ans,fun1(i,k,s)+fun1(k+1,j,s));
+        }
+        return dp[i][j]=(s[i]==s[j])?ans-1:ans;
+    }
     int strangePrinter(string s) {
         memset(dp,-1,sizeof(dp));
-        return fun(0,s.size()-1,s);
+        // return fun(0,s.size()-1,s);
+        return fun1(0,s.size()-1,s);
     }
 };
