@@ -1,19 +1,26 @@
 class Solution {
 public:
-    int fun(int m, int n, int dp[100][100],vector<vector<int>> &grid)
+    int n,m,dp[101][101];
+    bool isValid(int i,int j)
     {
-        if(m<0 || n<0 || grid[m][n]==1) return 0;
-        if(m==0 &&n==0) return 1;
-        if(dp[m][n]!=-1) return dp[m][n];
-        int up=fun(m-1,n,dp,grid);
-        int left=fun(m,n-1,dp,grid);
-        return dp[m][n]=up+left;
+        if(i<0 || i>=n || j<0 || j>=m)
+            return false;
+        return true;
+    }
+    int fun(int i, int j,vector<vector<int>> &grid)
+    {
+        if(!isValid(i,j) || grid[i][j]==1)
+            return 0;
+        if(i==n-1 && j==m-1)
+            return 1;
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        return dp[i][j]=fun(i+1,j,grid)+fun(i,j+1,grid);
     }
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
-        int dp[100][100];
-        int m=obstacleGrid.size();
-        int n=obstacleGrid[0].size();
-        memset(dp,-1,sizeof dp);
-        return fun(m-1,n-1,dp,obstacleGrid);
+        memset(dp,-1,sizeof(dp));
+        n=obstacleGrid.size();
+        m=obstacleGrid[0].size();
+        return fun(0,0,obstacleGrid);
     }
 };
