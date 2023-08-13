@@ -9,7 +9,7 @@ public:
             auto it=s.lower_bound(nums[i]);
             if(it!=s.end()) //present in the set
                 mini=min(mini,abs(*it-nums[i]));
-            if(it!=s.begin())
+            if(it!=s.begin()) //nt present out of bound
             {
                 --it;
                 mini=min(mini,abs(*it-nums[i]));
