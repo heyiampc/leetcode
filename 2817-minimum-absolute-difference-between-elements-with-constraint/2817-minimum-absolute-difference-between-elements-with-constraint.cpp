@@ -7,13 +7,17 @@ public:
         {
             s.insert(nums[i-x]);
             auto it=s.lower_bound(nums[i]);
-            if(it!=s.end()) //present in the set
-                mini=min(mini,abs(*it-nums[i]));
-            if(it!=s.begin()) //nt present out of bound
+            if(it==s.end())
             {
                 --it;
-                mini=min(mini,abs(*it-nums[i]));
             }
+            mini=min(mini,abs(*it-nums[i]));
+            if(it!=s.begin()) // if not the first element (mid ele) check curr-prev
+            {
+                --it;
+                 mini=min(mini,abs(*it-nums[i]));
+            }
+            
         }
         return mini;
     }
