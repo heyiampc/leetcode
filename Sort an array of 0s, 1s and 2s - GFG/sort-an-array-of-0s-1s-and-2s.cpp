@@ -12,24 +12,25 @@ class Solution
     {
         // code here
         int l=0;
+        int h=n-1;
         int mid=0;
-        int high=n-1;
-        while(mid<=high)
+        while(mid<=h)
         {
             if(arr[mid]==0)
             {
-                swap(arr[l],arr[mid]);
-                l++;
+                swap(arr[mid],arr[l]);
                 mid++;
+                l++;
             }
             else if(arr[mid]==1)
             {
                 mid++;
             }
+            // if(arr[mid]==2)
             else
             {
-                swap(arr[mid],arr[high]);
-                high--;
+                swap(arr[mid],arr[h]);
+                h--;
             }
         }
     }
