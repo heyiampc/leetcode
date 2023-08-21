@@ -127,8 +127,7 @@ class Solution{
     	   if(flag)
     	   reverse(vec.begin(),vec.end());
     	   flag=!flag;
-    	   for(auto &x:vec)
-    	   v.push_back(x);
+    	   v.insert(v.end(),vec.begin(),vec.end());
     	}
     	return v;
     }
