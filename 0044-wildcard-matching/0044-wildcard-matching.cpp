@@ -22,13 +22,9 @@ class Solution
         bool ans=false;
         if(s1[i]==s2[j] || s2[j]=='?')
             ans|=fun(i+1,j+1,s1,s2);
-        if(ans)
-            return dp[i][j]=ans; // to reduce more calc return when ans becomes true
         if(s2[j]=='*')
         {
             ans|=fun(i+1,j,s1,s2) | fun(i,j+1,s1,s2);
-            if(ans)
-                return dp[i][j]=ans; // to reduce more calc return when ans becomes true
         }
         return dp[i][j]=ans;
     }
