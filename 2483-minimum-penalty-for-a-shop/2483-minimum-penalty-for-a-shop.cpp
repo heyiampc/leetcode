@@ -16,23 +16,18 @@ public:
         int prefix=0;
         for(int i=0;i<n;i++)
         {
-            // presuf[i][0]=presuf[i-1][0];
-            // if(customers[i]=='N')
-            // presuf[i][0]++;
-            // if(presuf[i][0])
-            //     flag1=true;
+            if(i-1>=0)
+            presuf[i][0]=presuf[i-1][0];
             if(customers[i]=='N')
-                prefix++;
-            if(prefix+presuf[i+1][1]<mini)
+            presuf[i][0]++;
+            if(presuf[i][0]+presuf[i+1][1]<mini)
             {
-                mini=prefix+presuf[i+1][1];
+                mini=presuf[i][0]+presuf[i+1][1];
                 ind=i+1;
             }
         }
         // for(auto &it:presuf)
         //     cout<<it[0]<<" "<<it[1]<<endl;
-        // if(!flag1)
-        //     return n;
         return ind;
     }
 };
