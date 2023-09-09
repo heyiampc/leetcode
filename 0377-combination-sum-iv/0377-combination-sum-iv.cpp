@@ -1,21 +1,20 @@
 class Solution {
 public:
-    int fun(vector<int>& nums, int target,vector<int> &dp)
+    int dp[1001];
+    int fun(int i,vector<int>& nums, int target)
     {
-        if(target<0)
-            return 0;
         if(target==0)
-            return 1;
+        return 1;
+        if(i>=nums.size() || target <0)
+            return 0;
         if(dp[target]!=-1)
             return dp[target];
-        int take=0;
-        for(int i=0;i<nums.size();i++)
-        take+=fun(nums,target-nums[i],dp);
-        return dp[target]=take;
-        
+        int take=fun(0,nums,target-nums[i]); // If taken next element will start from index 1
+        int not_take=fun(i+1,nums,target);
+        return dp[target]=take+not_take;
     }
     int combinationSum4(vector<int>& nums, int target) {
-        vector<int> dp(target+1,-1);
-        return fun(nums,target,dp);
+        memset(dp,-1,sizeof(dp));
+        return fun(0,nums,target);
     }
 };
