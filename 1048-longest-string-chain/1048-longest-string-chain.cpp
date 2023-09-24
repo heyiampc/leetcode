@@ -3,12 +3,6 @@ class comp
     public:
     bool operator()(const string &a,const string &b)
     {
-        if(a.size()==b.size())
-        {
-            for(int i=0;i<a.size();i++)
-                if(a[i]!=b[i])
-                    return a[i]<b[i];
-        }
         return a.size()<b.size();
     }
 };
