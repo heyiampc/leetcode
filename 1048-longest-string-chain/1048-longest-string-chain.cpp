@@ -1,49 +1,59 @@
+class comp
+{
+    public:
+    bool operator()(const string &a,const string &b)
+    {
+        if(a.size()==b.size())
+        {
+            for(int i=0;i<a.size();i++)
+                if(a[i]!=b[i])
+                    return a[i]<b[i];
+        }
+        return a.size()<b.size();
+    }
+};
 class Solution {
 public:
-    bool check(string &w1, string &w2)
-    {
-        if(w1.size()!=w2.size()+1)
+    int dp[1001][1001];
+    bool check(string &t,string &s)
+    { //isSubsequence
+        //cout<<s<<" "<<t<<endl;
+        if(t.size()!=s.size()+1)
             return false;
-        int first=0;
-        int second=0;
-        while(first<w1.size())
+        int i=0;
+        int j=0;
+        while(i< s.size() && j<t.size())
         {
-            if(w1[first]==w2[second])
+            if(s[i]==t[j])
             {
-                first++;
-                second++;
+                i++;
+                j++;
             }
             else
-            {
-                first++;
-            }
+                j++;
         }
-            if(w1.size()==first && w2.size()==second)
-                return true;
-                return false;
+        if(i==s.size()){ //cout<<"Y"<<endl;
+            return true;
+        }
+        return false;
     }
-    static bool comp(const string &w1, const string &w2)
+    int lis(int i,vector<string> &words,int prev)
     {
-        return w1.size()<w2.size();
+        if(i>=words.size())
+            return 0;
+        if(dp[i][prev+1]!=-1)
+            return dp[i][prev+1];
+        int take=0;
+        if(prev==-1 || check(words[i],words[prev]))
+            take=1+lis(i+1,words,i);
+        int not_take=0+lis(i+1,words,prev);
+        return dp[i][prev+1]=max(take,not_take);
     }
-    int longestStrChain(vector<string>& arr) {
-        int maxi=1;
-        int n=arr.size();
-        sort(arr.begin(),arr.end(),comp);
-	vector<int> dp(n,1);
-	for(int i=0;i<n;i++){
-		for(int prev=0;prev<i;prev++)
-		{
-			if(check(arr[i],arr[prev]) && 1+dp[prev] > dp[i])
-			{
-				dp[i]=1+dp[prev];
-			}
-		}
-		if(dp[i]>maxi)
-		{
-			maxi=dp[i];
-		}
-	}
-        return maxi;
+    int longestStrChain(vector<string>& words) {
+        memset(dp,-1,sizeof(dp));
+        sort(words.begin(),words.end(),comp());
+        // for(auto &x:words)
+        //     cout<<x<<" ";
+        return lis(0,words,-1);
     }
 };
