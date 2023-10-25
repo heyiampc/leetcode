@@ -51,8 +51,6 @@ public:
            return false;
         set<int> vis;
         bfs(root,adj,vis);
-        if(vis.size()!=n)
-            return false;
-        return true;
+        return vis.size()==n;
     }
 };
