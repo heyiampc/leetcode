@@ -16,14 +16,9 @@ public:
                     int mini=min(mp1[a],mp2[a]);
                     mp1[a]-=mini;
                     mp2[a]-=mini;
+                
             }
-        }
-        for(auto &[a,b]:mp2)
-        {
-            if(b)
-            {
-                cnt+=b;
-            }
+            cnt+=b;
         }
         return cnt;
     }
