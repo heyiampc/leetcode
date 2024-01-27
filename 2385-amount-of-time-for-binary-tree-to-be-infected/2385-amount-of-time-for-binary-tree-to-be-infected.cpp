@@ -12,28 +12,26 @@
 class Solution {
 public:
     int maxi=0;
-    int height(TreeNode* root,int start) {
-         if (root == NULL) {
+    int height(TreeNode* root,int start)
+    {
+        if(!root)
             return 0;
-        }
         int lh=height(root->left,start);
         int rh=height(root->right,start);
         if(root->val==start)
         {
-            maxi=max(lh,rh);
-            return -1;
-            // return -1*(max(lh,rh)+1); 
+            maxi=max(lh,rh); //start subtree max height
+            return -1; //to indicate start
         }
-        else if(lh>=0 && rh>=0)
+        if(lh>=0 && rh>=0)
         {
-            // maxi=max(lh,rh);
             return max(lh,rh)+1;
         }
         else
         {
-            int a=abs(lh)+abs(rh);
-            maxi=max(maxi,a);
-            return min(lh,rh)-1;
+            int dist=abs(lh)+abs(rh);
+            maxi=max(maxi,dist);
+            return min(lh,rh)-1; //return start dist with adding 1
         }
     }
     int amountOfTime(TreeNode* root, int start) {
